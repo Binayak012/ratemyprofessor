@@ -1,0 +1,36 @@
+{
+  "name": "rate-your-professor",
+  "version": "0.1.0",
+  "description": "Rate Your Professor – a lightweight, Igloo.inc-style MVP built with Next.js 14, React 18, and Tailwind CSS 3.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"No automated tests defined for this MVP\" && exit 0"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "tailwind",
+    "rate-my-professor",
+    "mvp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "next": "^14.2.35",
+    "postcss": "^8.5.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
+}
