@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Professor } from "../../data/professors";
+import { getUniversityName } from "../../data/professors";
+import { StarRatingDisplay } from "../ui/StarRatingDisplay";
 import { Badge } from "../ui/Badge";
 
 type ProfessorCardProps = {
@@ -10,6 +12,8 @@ type ProfessorCardProps = {
 };
 
 export function ProfessorCard({ professor }: ProfessorCardProps) {
+  const universityName = getUniversityName(professor.universityId);
+
   return (
     <Link
       href={`/professors/${professor.id}`}
@@ -20,15 +24,13 @@ export function ProfessorCard({ professor }: ProfessorCardProps) {
           <div className="text-sm font-medium text-gray-100">
             {professor.name}
           </div>
-          <div className="mt-1">
+          <div className="mt-1 flex flex-wrap gap-1">
             <Badge>{professor.department}</Badge>
+            <Badge>{universityName}</Badge>
           </div>
         </div>
         <div className="text-right text-xs text-gray-400">
-          <div className="text-lg font-semibold text-accent">
-            {professor.averageRating.toFixed(1)}
-          </div>
-          <div>avg rating</div>
+          <StarRatingDisplay value={professor.averageRating} />
           <div className="mt-1 text-[10px] text-gray-500">
             {professor.reviewCount} review
             {professor.reviewCount === 1 ? "" : "s"}

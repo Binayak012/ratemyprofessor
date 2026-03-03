@@ -1,6 +1,8 @@
 import type { Professor, Review } from "../../data/professors";
 import { calculateAverageRating } from "../../lib/rating";
+import { getUniversityName } from "../../data/professors";
 import { Badge } from "../ui/Badge";
+import { StarRatingDisplay } from "../ui/StarRatingDisplay";
 
 type ProfessorDetailProps = {
   professor: Professor;
@@ -9,6 +11,7 @@ type ProfessorDetailProps = {
 
 export function ProfessorDetail({ professor, reviews }: ProfessorDetailProps) {
   const averageRating = calculateAverageRating(reviews);
+  const universityName = getUniversityName(professor.universityId);
 
   return (
     <section className="col-span-12 rounded-lg border border-gray-800 bg-surface p-6 lg:col-span-8">
@@ -17,15 +20,18 @@ export function ProfessorDetail({ professor, reviews }: ProfessorDetailProps) {
           <h1 className="text-xl font-semibold text-gray-100">
             {professor.name}
           </h1>
-          <div className="mt-2">
+          <div className="mt-2 flex flex-wrap gap-1">
             <Badge>{professor.department}</Badge>
+            <Badge>{universityName}</Badge>
           </div>
         </div>
         <div className="text-right text-xs text-gray-400">
           <div className="text-3xl font-semibold text-accent">
             {averageRating.toFixed(1)}
           </div>
-          <div>average rating</div>
+          <div className="mt-1">
+            <StarRatingDisplay value={averageRating} />
+          </div>
           <div className="mt-1 text-[10px] text-gray-500">
             {reviews.length} review{reviews.length === 1 ? "" : "s"}
           </div>
@@ -44,9 +50,7 @@ export function ProfessorDetail({ professor, reviews }: ProfessorDetailProps) {
               className="rounded-lg border border-gray-800 bg-surfaceMuted p-3 text-xs text-gray-200"
             >
               <div className="flex items-center justify-between gap-2">
-                <div className="text-accent font-semibold">
-                  {review.rating.toFixed(1)}
-                </div>
+                <StarRatingDisplay value={review.rating} />
                 <div className="text-[10px] text-gray-500">
                   {new Date(review.createdAt).toLocaleString()}
                 </div>

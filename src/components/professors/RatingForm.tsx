@@ -3,6 +3,7 @@
 import React from "react";
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
+import { StarRatingInput } from "../ui/StarRatingInput";
 
 type RatingFormProps = {
   onSubmit: (input: { rating: number; comment?: string }) => Promise<void>;
@@ -59,17 +60,9 @@ export function RatingForm({ onSubmit }: RatingFormProps) {
         <label className="mb-1 block text-[11px] text-gray-400">
           Rating (1–5)
         </label>
-        <Input
-          type="number"
-          min={1}
-          max={5}
-          step={0.5}
+        <StarRatingInput
           value={rating}
-          onChange={(event) =>
-            setRating(
-              event.target.value === "" ? "" : Number(event.target.value)
-            )
-          }
+          onChange={(newRating) => setRating(newRating)}
         />
       </div>
 
