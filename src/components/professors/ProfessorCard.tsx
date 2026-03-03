@@ -13,7 +13,7 @@ export function ProfessorCard({ professor }: ProfessorCardProps) {
   return (
     <Link
       href={`/professors/${professor.id}`}
-      className="col-span-12 rounded-lg border border-gray-800 bg-surface p-4 transition-colors hover:border-accent sm:col-span-6 lg:col-span-4"
+      className="col-span-12 rounded-lg border border-gray-800/80 bg-surface/90 p-4 shadow-[0_0_25px_rgba(0,0,0,0.6)] transition-transform transition-colors hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_40px_rgba(15,23,42,0.9)] sm:col-span-6 lg:col-span-4"
     >
       <div className="flex items-start justify-between gap-3">
         <div>

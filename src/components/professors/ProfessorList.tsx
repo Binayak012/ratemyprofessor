@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import type { Professor } from "../../data/professors";
 import { filterProfessors, type ProfessorFilter } from "../../lib/filter";
