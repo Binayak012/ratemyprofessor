@@ -13,3 +13,11 @@ export function getProfessorReviews(
   return allReviews.filter((review) => review.professorId === professorId);
 }
 
+/** Average difficulty (1–5) over reviews that have difficulty set. O(n). */
+export function calculateAverageDifficulty(reviews: Review[]): number | null {
+  const withDiff = reviews.filter((r) => typeof r.difficulty === "number");
+  if (withDiff.length === 0) return null;
+  const total = withDiff.reduce((sum, r) => sum + (r.difficulty ?? 0), 0);
+  return Number((total / withDiff.length).toFixed(2));
+}
+

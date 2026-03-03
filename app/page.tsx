@@ -1,4 +1,5 @@
 import { Button } from "../src/components/ui/Button";
+import { FlappyBirdGame } from "../src/components/canvas/FlappyBirdGame";
 
 export default function HomePage() {
   return (
@@ -37,23 +38,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <aside className="col-span-12 space-y-3 rounded-lg border border-gray-800/80 bg-surface/80 p-6 text-xs text-gray-400 shadow-[0_20px_60px_rgba(0,0,0,0.8)] lg:col-span-4 lg:translate-y-4 lg:transform lg:hover:-translate-y-0 lg:hover:shadow-[0_40px_80px_rgba(15,23,42,0.9)] lg:transition-all">
+      <aside className="col-span-12 space-y-4 rounded-lg border border-gray-800/80 bg-surface/80 p-6 text-xs text-gray-400 shadow-[0_20px_60px_rgba(0,0,0,0.8)] lg:col-span-4 lg:translate-y-4 lg:transform lg:hover:-translate-y-0 lg:hover:shadow-[0_40px_80px_rgba(15,23,42,0.9)] lg:transition-all">
         <p className="font-semibold text-gray-100">MVP Checklist</p>
         <ul className="mt-2 space-y-1 list-disc pl-4">
           <li>View and search professors.</li>
-          <li>See average ratings and review counts.</li>
-          <li>Open a detail view for each professor.</li>
-          <li>Submit a rating and see it reflected immediately.</li>
+          <li>Filter by university, department, rating.</li>
+          <li>See quality &amp; difficulty stars with reflection.</li>
+          <li>Open a detail view and submit a rating.</li>
         </ul>
-        <div className="mt-4 rounded-lg border border-dashed border-gray-700/80 bg-gradient-to-br from-surfaceMuted via-surface to-black/60 p-3 text-[11px] text-gray-400">
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
-            3D illusion
+        <div className="mt-4 rounded-lg border border-gray-700/80 bg-surfaceMuted/80 p-4">
+          <p className="font-semibold text-gray-100">Flappy Bird</p>
+          <p className="mt-1 text-[11px] text-gray-500">
+            Click or press Space to flap. Avoid the pipes.
           </p>
-          <p className="mt-2 leading-relaxed">
-            Panels float above a gridded dark field, hinting at a 3D dashboard
-            without heavy graphics—keeping performance friendly for classroom
-            hardware.
-          </p>
+          <FlappyBirdGame />
         </div>
       </aside>
     </>

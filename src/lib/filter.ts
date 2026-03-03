@@ -1,14 +1,14 @@
 export type ProfessorFilter = {
   query?: string;
   department?: string;
+  universityId?: string;
   minRating?: number;
 };
 
-export function filterProfessors<T extends { name: string; department: string }>(
-  professors: T[],
-  filters: ProfessorFilter
-): T[] {
-  const { query, department, minRating } = filters;
+export function filterProfessors<
+  T extends { name: string; department: string; universityId?: string }
+>(professors: T[], filters: ProfessorFilter): T[] {
+  const { query, department, universityId, minRating } = filters;
 
   const normalizedQuery = query?.toLowerCase().trim() ?? "";
 
@@ -23,9 +23,12 @@ export function filterProfessors<T extends { name: string; department: string }>
       return false;
     }
 
+    if (universityId && professor.universityId !== universityId) {
+      return false;
+    }
+
     if (typeof minRating === "number") {
-      // Rating filtering by minRating is implemented on the frontend
-      // using precomputed aggregates; backend stays agnostic here.
+      // minRating is applied on the frontend via precomputed aggregates
     }
 
     return true;

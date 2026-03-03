@@ -2,6 +2,7 @@ export type Review = {
   id: string;
   professorId: string;
   rating: number; // 1–5
+  difficulty?: number; // 1–5 (1 = easy, 5 = very hard)
   comment?: string;
   createdAt: string;
 };
@@ -63,6 +64,7 @@ export const initialReviews: Review[] = [
     id: "r1",
     professorId: "p1",
     rating: 5,
+    difficulty: 2,
     comment: "Clear explanations and very supportive.",
     createdAt: new Date().toISOString()
   },
@@ -70,6 +72,7 @@ export const initialReviews: Review[] = [
     id: "r2",
     professorId: "p2",
     rating: 4,
+    difficulty: 4,
     comment: "Challenging but fair.",
     createdAt: new Date().toISOString()
   },
@@ -77,6 +80,7 @@ export const initialReviews: Review[] = [
     id: "r3",
     professorId: "p3",
     rating: 5,
+    difficulty: 3,
     comment: "Legendary lectures, very engaging.",
     createdAt: new Date().toISOString()
   },
@@ -84,6 +88,7 @@ export const initialReviews: Review[] = [
     id: "r4",
     professorId: "p4",
     rating: 5,
+    difficulty: 5,
     comment: "Makes algorithms feel intuitive.",
     createdAt: new Date().toISOString()
   },
@@ -91,6 +96,7 @@ export const initialReviews: Review[] = [
     id: "r5",
     professorId: "p5",
     rating: 4,
+    difficulty: 4,
     comment: "Great projects, grading is strict but fair.",
     createdAt: new Date().toISOString()
   },
@@ -98,6 +104,7 @@ export const initialReviews: Review[] = [
     id: "r6",
     professorId: "p10",
     rating: 5,
+    difficulty: 2,
     comment: "Super inspiring and supportive of students.",
     createdAt: new Date().toISOString()
   },
@@ -105,6 +112,7 @@ export const initialReviews: Review[] = [
     id: "r7",
     professorId: "p11",
     rating: 5,
+    difficulty: 4,
     comment: "Explains abstract algebra with clear intuition.",
     createdAt: new Date().toISOString()
   },
@@ -112,6 +120,7 @@ export const initialReviews: Review[] = [
     id: "r8",
     professorId: "p13",
     rating: 4,
+    difficulty: 5,
     comment: "Very deep material, office hours are essential.",
     createdAt: new Date().toISOString()
   },
@@ -119,6 +128,7 @@ export const initialReviews: Review[] = [
     id: "r9",
     professorId: "p15",
     rating: 5,
+    difficulty: 3,
     comment: "Physics demos are unforgettable.",
     createdAt: new Date().toISOString()
   },
@@ -126,6 +136,7 @@ export const initialReviews: Review[] = [
     id: "r10",
     professorId: "p17",
     rating: 4,
+    difficulty: 5,
     comment: "Mind-bending lectures, homework is tough.",
     createdAt: new Date().toISOString()
   },
@@ -133,6 +144,7 @@ export const initialReviews: Review[] = [
     id: "r11",
     professorId: "p19",
     rating: 5,
+    difficulty: 2,
     comment: "Field stories make the material come alive.",
     createdAt: new Date().toISOString()
   }

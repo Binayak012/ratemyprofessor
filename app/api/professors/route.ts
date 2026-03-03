@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { getProfessors, getReviews } from "./data";
-import { calculateAverageRating, getProfessorReviews } from "../../../src/lib/rating";
+import {
+  calculateAverageDifficulty,
+  calculateAverageRating,
+  getProfessorReviews
+} from "../../../src/lib/rating";
 
 export async function GET() {
   const professors = getProfessors();
@@ -9,10 +13,12 @@ export async function GET() {
   const payload = professors.map((professor) => {
     const professorReviews = getProfessorReviews(reviews, professor.id);
     const averageRating = calculateAverageRating(professorReviews);
+    const averageDifficulty = calculateAverageDifficulty(professorReviews);
 
     return {
       ...professor,
       averageRating,
+      averageDifficulty: averageDifficulty ?? null,
       reviewCount: professorReviews.length
     };
   });

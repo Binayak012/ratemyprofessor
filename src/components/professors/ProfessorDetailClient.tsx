@@ -16,7 +16,11 @@ export function ProfessorDetailClient({
 }: ProfessorDetailClientProps) {
   const [reviews, setReviews] = React.useState<Review[]>(initialReviews);
 
-  async function handleSubmit(input: { rating: number; comment?: string }) {
+  async function handleSubmit(input: {
+    rating: number;
+    difficulty?: number;
+    comment?: string;
+  }) {
     const response = await fetch(`/api/professors/${professor.id}/reviews`, {
       method: "POST",
       headers: {

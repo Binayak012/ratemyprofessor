@@ -1,7 +1,11 @@
 import { ProfessorList, type ProfessorWithAggregates } from "../../src/components/professors/ProfessorList";
+import { Breadcrumbs } from "../../src/components/dom/Breadcrumbs";
 
 async function fetchProfessors(): Promise<ProfessorWithAggregates[]> {
-  const response = await fetch("http://localhost:3000/api/professors", {
+  const base = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+  const response = await fetch(`${base}/api/professors`, {
     cache: "no-store",
     next: { revalidate: 0 }
   });
@@ -18,6 +22,9 @@ export default async function ProfessorsPage() {
 
   return (
     <>
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "Professors" }]}
+      />
       <section className="col-span-12 mb-4">
         <h1 className="text-xl font-semibold text-gray-100">
           Professors

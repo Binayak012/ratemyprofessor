@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Professor, Review } from "../../../src/data/professors";
 import { ProfessorDetailClient } from "../../../src/components/professors/ProfessorDetailClient";
+import { Breadcrumbs } from "../../../src/components/dom/Breadcrumbs";
 
 type ProfessorResponse = Professor & {
   averageRating: number;
@@ -14,10 +15,13 @@ type Params = {
 };
 
 async function fetchProfessor(id: string): Promise<ProfessorResponse> {
-  const response = await fetch(
-    `http://localhost:3000/api/professors/${id}`,
-    { cache: "no-store", next: { revalidate: 0 } }
-  );
+  const base = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+  const response = await fetch(`${base}/api/professors/${id}`, {
+    cache: "no-store",
+    next: { revalidate: 0 }
+  });
 
   if (response.status === 404) {
     notFound();
@@ -33,10 +37,19 @@ async function fetchProfessor(id: string): Promise<ProfessorResponse> {
 export default async function ProfessorDetailPage({ params }: Params) {
   const professor = await fetchProfessor(params.id);
   return (
-    <ProfessorDetailClient
-      professor={professor}
-      initialReviews={professor.reviews}
-    />
+    <>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Professors", href: "/professors" },
+          { label: professor.name }
+        ]}
+      />
+      <ProfessorDetailClient
+        professor={professor}
+        initialReviews={professor.reviews}
+      />
+    </>
   );
 }
 

@@ -53,9 +53,18 @@ export async function POST(request: Request, { params }: Params) {
       ? commentRaw.trim()
       : undefined;
 
+  const difficultyRaw = (body as any).difficulty;
+  const difficulty =
+    typeof difficultyRaw === "number" &&
+    difficultyRaw >= 1 &&
+    difficultyRaw <= 5
+      ? difficultyRaw
+      : undefined;
+
   const review = addReview({
     professorId: professor.id,
     rating,
+    difficulty,
     comment
   });
 

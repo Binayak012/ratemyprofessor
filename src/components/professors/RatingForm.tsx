@@ -6,11 +6,16 @@ import { Button } from "../ui/Button";
 import { StarRatingInput } from "../ui/StarRatingInput";
 
 type RatingFormProps = {
-  onSubmit: (input: { rating: number; comment?: string }) => Promise<void>;
+  onSubmit: (input: {
+    rating: number;
+    difficulty?: number;
+    comment?: string;
+  }) => Promise<void>;
 };
 
 export function RatingForm({ onSubmit }: RatingFormProps) {
   const [rating, setRating] = React.useState<number | "">("");
+  const [difficulty, setDifficulty] = React.useState<number | "">("");
   const [comment, setComment] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -20,7 +25,7 @@ export function RatingForm({ onSubmit }: RatingFormProps) {
     setError(null);
 
     if (rating === "" || rating < 1 || rating > 5) {
-      setError("Please choose a rating between 1 and 5.");
+      setError("Please choose a quality rating (1–5 stars).");
       return;
     }
 
@@ -28,10 +33,15 @@ export function RatingForm({ onSubmit }: RatingFormProps) {
     try {
       await onSubmit({
         rating,
+        difficulty:
+          difficulty !== "" && difficulty >= 1 && difficulty <= 5
+            ? difficulty
+            : undefined,
         comment: comment.trim() ? comment.trim() : undefined
       });
 
       setRating("");
+      setDifficulty("");
       setComment("");
     } catch (error_) {
       setError(
@@ -46,6 +56,7 @@ export function RatingForm({ onSubmit }: RatingFormProps) {
 
   return (
     <form
+      id="rate"
       onSubmit={handleSubmit}
       className="col-span-12 space-y-3 rounded-lg border border-gray-800 bg-surface p-4 lg:col-span-4"
     >
@@ -58,11 +69,21 @@ export function RatingForm({ onSubmit }: RatingFormProps) {
 
       <div>
         <label className="mb-1 block text-[11px] text-gray-400">
-          Rating (1–5)
+          Quality (1–5 stars)
         </label>
         <StarRatingInput
           value={rating}
           onChange={(newRating) => setRating(newRating)}
+        />
+      </div>
+
+      <div>
+        <label className="mb-1 block text-[11px] text-gray-400">
+          Difficulty (1 = easy, 5 = very hard) — optional
+        </label>
+        <StarRatingInput
+          value={difficulty}
+          onChange={(newDifficulty) => setDifficulty(newDifficulty)}
         />
       </div>
 
