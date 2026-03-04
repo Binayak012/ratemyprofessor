@@ -45,11 +45,13 @@ export function FlappyBirdGame() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const context = ctx;
 
     let rafId: number;
     const skyH = H - GROUND_H;
 
     function drawSky() {
+      const ctx = context;
       const grad = ctx.createLinearGradient(0, 0, 0, skyH);
       grad.addColorStop(0, "#5c94e8");
       grad.addColorStop(1, "#87ceeb");
@@ -58,6 +60,7 @@ export function FlappyBirdGame() {
     }
 
     function drawGround() {
+      const ctx = context;
       ctx.fillStyle = "#deb887";
       ctx.fillRect(0, skyH, W, GROUND_H);
       ctx.fillStyle = "#8b7355";
@@ -69,6 +72,7 @@ export function FlappyBirdGame() {
     }
 
     function drawPipe(p: { x: number; top: number; bottom: number }) {
+      const ctx = context;
       const capH = 12;
       ctx.fillStyle = "#2d8a3e";
       ctx.strokeStyle = "#1a5c24";
@@ -89,6 +93,7 @@ export function FlappyBirdGame() {
     }
 
     function drawBird(by: number, vy: number) {
+      const ctx = context;
       const bx = W / 2 - BIRD_W / 2;
       const wingTilt = Math.max(-0.4, Math.min(0.4, vy * 0.08));
 
@@ -128,6 +133,7 @@ export function FlappyBirdGame() {
     }
 
     const draw = () => {
+      const ctx = context;
       const g = gameRef.current;
       if (!g) return;
 

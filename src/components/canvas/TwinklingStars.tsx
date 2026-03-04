@@ -35,7 +35,8 @@ export function TwinklingStars() {
             width: star.size,
             height: star.size,
             animation: `star-twinkle ${star.duration}s ease-in-out ${star.delay}s infinite`,
-            boxShadow: "0 0 4px 1px rgba(255,255,255,0.5)"
+            boxShadow:
+              "0 0 22px 6px rgba(255,255,255,1), 0 0 60px 18px rgba(255,255,255,0.65)"
           }}
         />
       ))}
